@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>রোজকার হেঁশেল · আমন্ত্রণ</title>
+<meta name="description" content="রোজকার হেঁশেল অ্যাপে পরিবারে যোগ দেওয়ার আমন্ত্রণ">
+<meta property="og:title" content="রোজকার হেঁশেল: পরিবারে যোগ দিন">
+<meta property="og:description" content="পরিবারের সবাই মিলে প্রতিদিনের মেন্যু। লিংকে চাপ দিয়ে যোগ দিন।">
+<meta name="robots" content="noindex">
+<style>
+:root{--bg:#f6f7f4;--surface:#fff;--line:#e2e7df;--fg:#1b221d;--muted:#5d6a60;--primary:#2e6b45;--primary-soft:#e2efe5;--on-primary:#fff;--danger:#b3261e;
+  --font:"Hind Siliguri","Noto Sans Bengali","Noto Sans",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1411;--surface:#171d19;--line:#2b352e;--fg:#e6ece7;--muted:#9eaba1;--primary:#86cf9c;--primary-soft:#1d3325;--on-primary:#0b1a10;--danger:#f2b8b5;color-scheme:dark}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.55}
+main{max-width:440px;margin:0 auto;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(32px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:16px}
+.top{display:flex;justify-content:flex-end}
+.lang{font:inherit;font-size:.9rem;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg)}
+.mark{width:76px;height:76px;border-radius:22px;background:var(--primary);display:grid;place-items:center;align-self:center;margin-top:3vh}
+.mark svg{width:46px;height:46px;fill:none;stroke:var(--on-primary);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+h1{font-size:1.6rem;text-align:center;margin:0}
+h2{font-size:1.05rem;margin:0}
+p{margin:0}
+.muted{color:var(--muted)}
+.center{text-align:center}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.card.hi{background:var(--primary-soft);border-color:var(--primary)}
+.btn{display:flex;align-items:center;justify-content:center;min-height:52px;padding:0 20px;border-radius:999px;background:var(--primary);color:var(--on-primary);font-weight:600;font-size:1.02rem;text-decoration:none;border:0;font-family:inherit}
+.btn.tonal{background:var(--primary-soft);color:var(--primary)}
+ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
+.err{color:var(--danger)}
+a{color:var(--primary)}
+</style>
+</head>
+<body>
+<main>
+  <div class="top"><button class="lang" id="lang"></button></div>
+  <div class="mark" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M12 30h40l-4 18a6 6 0 0 1-6 5H22a6 6 0 0 1-6-5z"/><path d="M8 30h48"/><path d="M24 22c0-4 4-4 4-8M32 22c0-4 4-4 4-8M40 22c0-4 4-4 4-8"/></svg></div>
+  <h1 data-bn="রোজকার হেঁশেল" data-en="Rojkar Heshel"></h1>
+  <div class="card hi" id="invite"><p id="inviteText"></p></div>
+  <a class="btn" id="open" href="#"></a>
+  <p class="muted center small" id="openHint"></p>
+  <div class="card" id="install">
+    <h2 data-bn="অ্যাপ এখনও নেই?" data-en="Don't have the app yet?"></h2>
+    <ol>
+      <li data-bn="নিচের বোতাম চেপে অ্যাপটি ডাউনলোড করুন।" data-en="Download the app with the button below."></li>
+      <li data-bn="ফাইলটা খুলে ইনস্টল করুন। ফোন অনুমতি চাইলে দিন; Play Protect সতর্ক করলে “Install anyway” চাপুন।" data-en="Open the file and install it. Allow it if your phone asks; if Play Protect warns, tap “Install anyway”."></li>
+      <li data-bn="এই পাতায় ফিরে এসে ওপরের “অ্যাপে খুলে যোগ দিন” আবার চাপুন।" data-en="Come back to this page and tap “Open the app and join” again."></li>
+    </ol>
+    <a class="btn tonal" id="dl" href="app/rojkar-heshel.apk" download data-bn="অ্যাপ ডাউনলোড করুন (অ্যান্ড্রয়েড)" data-en="Download the app (Android)"></a>
+  </div>
+  <p class="muted center" style="font-size:.85rem" data-bn="এই পাতায় আপনার পরিবারের কোনো তথ্য রাখা হয় না।" data-en="This page stores no family information."></p>
+</main>
+<script>
+(function(){
+  var cfg={project:"rojkar-heshel",key:"AIzaSyB0q27YLaXETxpOHe8r9CSgCDxEQBqUjJg",pkg:"com.taifur.heshel"};
+  var lang=(function(){try{return localStorage.getItem("heshel-lang")||(navigator.language||"").slice(0,2)==="en"&&"en"||"bn"}catch(e){return "bn"}})();
+  var L=function(b,e){return lang==="en"?e:b};
+  var params=new URLSearchParams(location.search),t=params.get("t")||"";
+  var valid=/^[A-Za-z0-9]{12,40}$/.test(t),android=/android/i.test(navigator.userAgent);
+  var link=null,state=valid?"loading":"bad";
+  var $=function(id){return document.getElementById(id)};
+  function render(){
+    document.documentElement.lang=lang;document.title=L("রোজকার হেঁশেল · আমন্ত্রণ","Rojkar Heshel · Invitation");
+    Array.prototype.forEach.call(document.querySelectorAll("[data-bn]"),function(e){e.textContent=L(e.dataset.bn,e.dataset.en)});
+    $("lang").textContent=lang==="en"?"বাংলা":"English";
+    var txt=$("inviteText");txt.className="";
+    if(state==="bad"){txt.textContent=L("লিংকটি সম্পূর্ণ নয়। যিনি পাঠিয়েছেন তাঁর মেসেজ থেকে পুরো লিংকে আবার চাপ দিন।","This link is incomplete. Tap the full link in the message again.");txt.className="err"}
+    else if(state==="dead"){txt.textContent=L("এই আমন্ত্রণ লিংকের মেয়াদ শেষ। যিনি পাঠিয়েছেন তাঁকে নতুন লিংক পাঠাতে বলুন।","This invite link has expired. Ask the sender for a new one.");txt.className="err"}
+    else if(link)txt.textContent=L((link.fromName||"একজন")+" আপনাকে “"+(link.familyName||"একটি পরিবার")+"” পরিবারে যোগ দিতে ডেকেছেন। অ্যাপে প্রতিদিনের মেন্যু সবাই মিলে দেখবেন আর পছন্দ জানাবেন।",(link.fromName||"Someone")+" invited you to the “"+(link.familyName||"family")+"” family. See the daily menu together and share what you like.");
+    else txt.textContent=L("আপনাকে রোজকার হেঁশেল অ্যাপে একটি পরিবারে যোগ দিতে ডাকা হয়েছে।","You've been invited to join a family on the Rojkar Heshel app.");
+    var o=$("open"),ok=state!=="bad"&&state!=="dead";
+    o.hidden=!ok;$("openHint").hidden=!ok;
+    o.textContent=L("অ্যাপে খুলে যোগ দিন","Open the app and join");
+    var back=location.href.split("#")[0]+"#install";
+    o.href=android?"intent://join?t="+t+"#Intent;scheme=heshel;package="+cfg.pkg+";S.browser_fallback_url="+encodeURIComponent(back)+";end":"heshel://join?t="+t;
+    $("openHint").textContent=android?L("অ্যাপ ইনস্টল থাকলে সরাসরি খুলবে। লগইন করলেই পরিবারে যোগ হবেন।","If the app is installed it opens directly; sign in and you're in."):L("এটি অ্যান্ড্রয়েড ফোনের অ্যাপ। লিংকটি ফোনে খুলুন।","This is an Android app. Open this link on your phone.");
+  }
+  $("lang").onclick=function(){lang=lang==="en"?"bn":"en";try{localStorage.setItem("heshel-lang",lang)}catch(e){}render()};
+  render();
+  if(valid){
+    fetch("https://firestore.googleapis.com/v1/projects/"+cfg.project+"/databases/(default)/documents/links/"+t+"?key="+cfg.key)
+      .then(function(r){if(r.status===404){state="dead";return null}return r.ok?r.json():null})
+      .then(function(d){if(d&&d.fields){var f=d.fields,s=function(k){return f[k]&&f[k].stringValue||""};
+        link={familyName:s("familyName"),fromName:s("fromName")};
+        var exp=f.expiresAt&&Number(f.expiresAt.integerValue||f.expiresAt.doubleValue||0);
+        state=(f.revoked&&f.revoked.booleanValue)||(exp&&exp<Date.now())?"dead":"ok"}else if(state==="loading")state="ok";render()})
+      .catch(function(){state="ok";render()});
+  }
+})();
+</script>
+</body>
+</html>
